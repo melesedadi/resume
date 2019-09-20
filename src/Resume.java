@@ -81,7 +81,7 @@ public class Resume {
     public String getDisplyResume() {
 
         String display = "Full Name: " + getFullName() +
-                "\nEmail Address " + getEmailAddress() + "\n"+
+                "\nEmail Address: " + getEmailAddress() + "\n"+
                 "\nEmployer Name: " + getEmployerName() +
                 "\nJob Title: " + getJobTitle() +
                 "\nJob Descriptions: " + getJobDescription() +
