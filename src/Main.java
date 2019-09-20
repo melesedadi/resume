@@ -4,63 +4,87 @@ import java.util.Scanner;
 public class Main {
     public static void main (String [] args){
         Scanner key = new Scanner(System.in);
+        ArrayList<Resume> resumeList = new ArrayList<>();
         String answer = " ";
+        int counterNumber = 1;
+        int jobNumber = 1;
+        int jobDescriptionNumber = 1;
 
-        ArrayList<String> jobList = new ArrayList<>();
         System.out.println("You are entering your resume");
 
         while (true){
+
             Resume addResume = new Resume();
-            ArrayList<String> jobs1  = new ArrayList<>();
-            System.out.println("Enter your name: ");
+            System.out.println("Resume " + counterNumber);
+            System.out.println("Please enter your name: ");
             answer = key.nextLine();
-            addResume.setName(answer);
+            addResume.setFullName(answer);
             System.out.println("Enter your email: ");
             answer = key.nextLine();
-            addResume.setEmail(answer);
+            addResume.setEmailAddress(answer);
             while (true){
-                System.out.println("Enter your employer name: ");
+                System.out.println("Job lists:");
+                System.out.println("Job " + jobNumber);
+                System.out.println("Please enter employer name: ");
                 answer = key.nextLine();
-                jobs1.add(answer);
+                addResume.setEmployerName(answer);
 
-                System.out.println("Enter your job title: ");
+                System.out.println("Please enter job title: ");
                 answer = key.nextLine();
-                jobs1.add(answer);
+                addResume.setJobTitle(answer);
 
-                System.out.println("Enter your Start date: ");
+                System.out.println("Please enter job Start date: ");
                 answer = key.nextLine();
-                jobs1.add(answer);
-                System.out.println("Enter your Start end date: ");
+                addResume.setJobStartDate(answer);
+                System.out.println("Please enter job end date: ");
                 answer = key.nextLine();
-                jobs1.add(answer);
+                addResume.setJobEndDate(answer);
 
-                System.out.println("Enter job description: ");
-                answer = key.nextLine();
-                jobs1.add(answer);
 
-                System.out.println("Do you have another job to enter? Answer yes or no : ");
+                while (true) {
+                    System.out.println("job Description " + jobDescriptionNumber);
+                    System.out.println("Please enter job description: ");
+                    answer = key.nextLine();
+                    addResume.setJobDescription(answer);
+
+                    System.out.println("Do you have addtional job description to add? Answer yes or no: ");
+                    answer = key.nextLine();
+                    if (answer.equalsIgnoreCase("no")) {
+                        break;
+                    }
+                    jobDescriptionNumber = jobDescriptionNumber + 1;
+                }
+                jobDescriptionNumber = 1;
+                System.out.println("Do you have addtional job to add? Answer yes or no : ");
                 answer = key.nextLine();
                 if (answer.equalsIgnoreCase("no")){
-                    System.out.println("This end of adding new job.");
                     break;
                 }
-                addResume.setJobs(jobs1);
+               jobNumber = jobNumber + 1;
+
 
             }
+            jobNumber = 1;
+
+
             System.out.println("Do you have another person resume to add? Answer yes or no: ");
             answer = key.nextLine();
             if (answer.equalsIgnoreCase("no")){
-                System.out.println("This is end of adding new resume.");
                 break;
-            }
-            jobList.add(addResume.getDisplyResume());
-
-
+                }
+            counterNumber = counterNumber + 1;
+            resumeList.add(addResume);
 
         }
-       for(String job: jobList){
-           System.out.println(job);
+        counterNumber = 1;
+       for(Resume resume: resumeList){
+           System.out.println("Resume" + counterNumber +":");
+           System.out.println(resume.getDisplyResume());
+           counterNumber = counterNumber + 1;
+
+
        }
+       counterNumber = 1;
 
     }
 }
